@@ -101,28 +101,70 @@ class LoginFormState extends State<LoginForm> {
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: ElevatedButton(
-                  onPressed: () {
-                    /// Validate returns true if the form is valid, or false otherwise.
-                    if (_formKey.currentState!.validate()) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(content: Text('Trying to Login')),
-                      );
-                    }
-                  },
-                  child: const Text('Submit'),
+                child: Column(
+                  children: [
+                    ElevatedButton(
+                      onPressed: () {
+                        /// Validate returns true if the form is valid, or false otherwise.
+                        if (_formKey.currentState!.validate()) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(content: Text('Trying to Login')),
+                          );
+                        }
+                      },
+                      style: ElevatedButton.styleFrom(
+                        foregroundColor: Colors.white,
+                        backgroundColor: Colors.blueAccent,
+                        elevation: 3,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(32),
+                        ),
+                        minimumSize: const Size(20,40)
+                      ),
+                      child: const Text('Submit'),
+                    ),
+
+                  ],
                 ),
               ),
                Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => const CustomerForm()),
-                      );
-                    },
-                    child: const Text('Create account'),
+                child: Column(
+                  children: [
+                    ElevatedButton(
+                        onPressed: () {
+
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => const CustomerForm()),
+                          );
+                        },
+
+                      style: ElevatedButton.styleFrom(
+                        foregroundColor: Colors.white,
+                        backgroundColor: Colors.blueAccent,
+                        elevation: 4,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(32),
+
+                        ),
+                        minimumSize: const Size(20,40),
+                      ),
+                        child: const Text('Create account'),
+
+
+                    ),
+                    const SizedBox(height: 10,),
+                    const Text('Click Create Account to register for PawHugs Connection',
+                      style: TextStyle(
+                        fontSize: 20,
+                        color: Colors.indigo,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+
+
+                  ],
                 ),
               )
 
