@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:paw_hug/customer_information.dart';
+import 'package:paw_hug/home.dart';
 
 /// LoginFormState widget that represents login form.
 class LoginFormState extends State<LoginForm> {
@@ -108,8 +109,18 @@ class LoginFormState extends State<LoginForm> {
                         /// Validate returns true if the form is valid, or false otherwise.
                         if (_formKey.currentState!.validate()) {
                           ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(content: Text('Trying to Login')),
+                            const SnackBar(
+                                content: Row(
+                                  children: [
+                                    CircularProgressIndicator(),
+                                    SizedBox(width: 20,),
+                                    Text('loading')
+                                  ],
+                                )),
                           );
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => Home()));
                         }
                       },
                       style: ElevatedButton.styleFrom(
@@ -119,7 +130,7 @@ class LoginFormState extends State<LoginForm> {
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(32),
                         ),
-                        minimumSize: const Size(20,40)
+                        minimumSize: const Size(130,40)
                       ),
                       child: const Text('Submit'),
                     ),
@@ -154,14 +165,6 @@ class LoginFormState extends State<LoginForm> {
 
 
                     ),
-                    const SizedBox(height: 10,),
-                    const Text('Click Create Account to register for PawHugs Connection',
-                      style: TextStyle(
-                        fontSize: 20,
-                        color: Colors.indigo,
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
 
 
                   ],
@@ -180,6 +183,7 @@ class LoginForm extends StatefulWidget {
   LoginFormState createState() => LoginFormState();
 }
 
+
 class LoginScreen extends StatelessWidget {
   const LoginScreen({Key? key}) : super(key: key);
 
@@ -187,6 +191,8 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: const Color.fromRGBO(48, 100,100, 1.0),
+        shadowColor:  const Color.fromRGBO(70, 112, 112, 1.0),
         actions: const [
           Image(
             image: AssetImage('images/PAWS.jpg'),
@@ -205,10 +211,17 @@ class LoginScreen extends StatelessWidget {
       body: Container(
         decoration: const BoxDecoration(
           image: DecorationImage(
-              image: AssetImage('images/login_background.jpg'),
-              fit: BoxFit.fill),
+            image: AssetImage('images/PAWS.jpg'),
+            fit: BoxFit.cover,
+          ),
         ),
-        child: Center(
+
+
+
+
+
+
+    child: Center(
           child: Container(
             padding: const EdgeInsets.all(30.0),
             child: Column(
